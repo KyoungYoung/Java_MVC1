@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="com/example/mvc05/mybatis/db.properties"/>
+<!--    MemberMapper.xml에서 resultType 경로를 쉽게 나타내기 , 나중에는 여러 개 가능 -->
+    <typeAliases>
+        <typeAlias type="com.example.mvc05.model.MemberVO" alias="memberVO"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/example/mvc05/mybatis/MemberMapper.xml"/>
+    </mappers>
+</configuration>
