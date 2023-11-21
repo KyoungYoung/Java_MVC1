@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mvc06.mybatis.MemberMapper">
+<!--    id는 식별자 - DAO에서 메서드 이름으로 만들어 주는게 대부분이다-->
+<!--    resultType은 select한 결과에서 데이터를 하나씩 가지고와서 결과를 묶어지는 타입-->
+    <select id="memberList" resultType="memberVO">
+        select * from member
+    </select>
+
+<!--    어디에 저장되어있는 파라미터를 불러오기-->
+    <insert id="memberInsert" parameterType="memberVO">
+        insert into member(id,pass,name,age,email,phone)
+        values(#{id},#{pass},#{name},#{age},#{email},#{phone})
+    </insert>
+
+    <delete id="memberDelete" parameterType="Integer">
+        delete from member where num=#{num}
+    </delete>
+
+    <select id="memberContent" parameterType="Integer" resultType="memberVO">
+        select * from member where num=#{num}
+    </select>
+    
+    <update id="memberUpdate" parameterType="memberVO">
+        update member set age=#{age}, email=#{email}, phone=#{phone} where num=#{num}
+    </update>
+
+    <select id="memberLogin" parameterType="memberVO" resultType="String">
+        select name from member where id=#{id} and pass=#{pass}
+    </select>
+
+    <select id="memberDbcheck" parameterType="String" resultType="String">
+        select id from member where id=#{id}
+    </select>
+</mapper>
